@@ -1,0 +1,48 @@
+@import "../../../styles.scss";
+
+/*footer*/
+
+footer {
+  background-color: #000000;
+  color: #b8b8b8;
+  @include padding-grid(0, 100px, 0, 100px);
+}
+
+footer .footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 0px 0px;
+  line-height: 45px;
+}
+
+footer .footer-container h3 {
+  font-family: "Roboto Slab", serif;
+  padding: 0px 0px 30px;
+}
+
+footer .p-footer {
+  text-align: center;
+  padding: 60px 0px 40px;
+}
+
+@media (max-width: 1152px) {
+  footer {
+    @include padding-grid(0, 50px, 0, 50px);
+  }
+}
+
+@media (max-width: 425px) {
+  footer .footer-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: start;
+  }
+  footer .footer-container h3 {
+    padding-top: 50px;
+    padding-bottom: 15px;
+  }
+  footer .footer-container img {
+    padding-bottom: 20px;
+  }
+}

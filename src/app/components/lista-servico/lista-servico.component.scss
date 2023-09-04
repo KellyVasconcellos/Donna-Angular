@@ -1,0 +1,80 @@
+@import "../../../styles.scss";
+
+h5 {
+  margin: 0px
+}
+
+.servicos-salao {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-bottom: 100px;
+  justify-content: space-between;
+}
+
+.servicos-salao .servico {
+  height: 215px;
+  width: 700px;
+  border: #e0e4e8 1px solid;
+  border-radius: 20px;
+  padding: 30px 30px 30px 30px;
+  margin-top: 45px;
+}
+
+.servicos-salao .servico .descricao {
+  padding: 8px 0px 20px 0px;
+}
+
+.servicos-salao .servico .preco-botao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servicos-salao .servico .preco-botao .preco {
+  display: flex;
+  align-items: center;
+}
+
+.servicos-salao .servico .preco-botao .preco p {
+  padding-right: 5px;
+}
+
+.servicos-salao .servico .botao {
+  background-color: #ecc0c3;
+  border-radius: 20px;
+  height: 35px;
+  width: 120px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.servicos-salao .servico .botao:hover {
+  border: solid 2px #eba4a9;
+}
+
+.invisivel {
+  opacity: 0;
+}
+
+@media (max-width: 425px) {
+
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .servicos-salao {
+    padding-bottom: 0px;
+  }
+
+  .servicos-salao .servico {
+    height: 100%;
+    width: 100%;
+    border: #e0e4e8 1px solid;
+    border-radius: 20px;
+    padding: 30px 30px 30px 30px;
+    margin-top: 45px;
+  }
+}
