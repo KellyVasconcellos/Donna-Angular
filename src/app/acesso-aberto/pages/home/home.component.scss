@@ -1,0 +1,80 @@
+@import "../../../../styles.scss";
+
+section {
+  @include padding-grid(100px, 200px, 100px, 200px);
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+h2 {
+  padding-bottom: 30px;
+}
+
+.diferenciais {
+  background-color: #f0f0f0;
+}
+
+.diferenciais .itens {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 0px 50px 0px;
+  gap: 50px;
+}
+
+.diferenciais .itens p {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+}
+
+.diferenciais .itens p img {
+  padding-right: 10px;
+}
+
+.destaque .imagens {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 0px 50px 0px;
+}
+
+@media (max-width: 1024px) {
+
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+  }
+}
+
+@media (max-width: 425px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+  .diferenciais .itens {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .destaque .imagens {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 50px 0px 0px 0px;
+  }
+  .destaque .imagens img {
+    width: 200px;
+  }
+}

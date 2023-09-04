@@ -1,0 +1,44 @@
+<app-menu-hamburguer></app-menu-hamburguer>
+
+<header>
+  <section class="container-menu">
+    <div class="menu">
+      <div class="nome-marca">
+        <a href="./">
+          <img
+            src="assets/img/home/marca.png"
+            width="160"
+            height="30"
+            alt="Donna"
+          />
+        </a>
+      </div>
+      <div class="menu-principal">
+        <nav>
+          <ul>
+            <li><a [routerLink]="['home']" fragment="homeId">Home</a></li>
+            <li><a [routerLink]="['sobre']" fragment="sobreId">Sobre Nós</a></li>
+            <li><a [routerLink]="['servicos']" fragment="servicosId">Serviços</a></li>
+            <li><a [routerLink]="['agendamento']" fragment="agendamentoId">Agendamento</a></li>
+            <li><a [routerLink]="['contato']" fragment="contatoId">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+      <button [routerLink]="['login']" fragment="loginId" class="botao-login">
+        <p><a>Login</a></p>
+      </button>
+    </div>
+    <div class="menu-texto" id="homeId">
+      <h1>
+        O seu cabelo em <span>boas mãos</span><br />
+        e a sua autoestima <br />restaurada
+      </h1>
+      <img src="assets/img/template/imagem_1.png" width="400px" />
+    </div>
+  </section>
+</header>
+
+<!-- Aqui deverá rotear todos as páginas -->
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

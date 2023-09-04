@@ -1,0 +1,124 @@
+@import "../../../../styles.scss";
+
+section {
+  @include padding-grid(100px, 200px, 0px, 200px);
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+h5 {
+  margin: 0px;
+}
+
+.negrito {
+  font-weight: bold;
+}
+
+.sobre-salao {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: justify;
+}
+
+.sobre-salao h2 {
+  padding: 45px 0px 25px 0px;
+}
+
+.sobre-salao .nome-salao {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.sobre-salao .localizacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.sobre-salao .funcionamento {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.sobre-salao .funcionamento .func-dia-header {
+  padding-right: 30px;
+}
+
+.sobre-salao .funcionamento .func-dia {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+}
+
+.sobre-salao .funcionamento .func-dia .func-hoje {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sobre-salao .funcionamento .func-dia .func-dia-semana {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+  padding-left: 20px;
+  align-items: center;
+}
+
+.equipe-foto .equipe h2 {
+  padding: 0px 0px 30px 0px;
+}
+
+.equipe-foto .equipe p {
+  padding: 0px 0px 30px 0px;
+}
+
+.invisivel {
+  opacity: 0;
+}
+
+@media (max-width: 1024px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+  }
+}
+
+@media (max-width: 425px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .equipe-foto {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .sobre-salao {
+    width: 100%;
+    padding-top: 0px;
+  }
+
+  .sobre-salao .funcionamento .func-dia-header {
+    padding: 0;
+  }
+
+  .sobre-salao .funcionamento .func-dia {
+    width: 100%;
+  }
+}

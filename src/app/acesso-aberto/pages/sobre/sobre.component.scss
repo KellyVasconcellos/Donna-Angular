@@ -1,0 +1,43 @@
+@import "../../../../styles.scss";
+
+section {
+  @include padding-grid(100px, 200px, 100px, 200px);
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+h2 {
+  padding-bottom: 30px;
+}
+
+.equipe {
+  text-align: justify;
+}
+
+.equipe p {
+  padding-bottom: 30px;
+}
+
+
+@media (max-width: 1024px) {
+
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+  }
+}
+
+@media (max-width: 425px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+}

@@ -1,0 +1,14 @@
+<div class="especialidades">
+  <div class="foto" *ngFor="let funcionario of interfaceFunc">
+    <a (click)="getId(funcionario.id)">
+      <img
+        class="imagens"
+        src="assets/img/agendamento/{{ funcionario.foto }}"
+        width="180"
+        [ngClass]="funcionario.opacity ? 'opacityOff' : 'opacityOn'"
+      />
+    </a>
+    <p class="nome">{{ funcionario.nome }}</p>
+    <p>{{ funcionario.especialidade }}</p>
+  </div>
+</div>

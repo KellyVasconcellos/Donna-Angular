@@ -1,0 +1,44 @@
+<main>
+  <app-background-preto
+      primeiraImagem="assets/img/home/imagem_1.png"
+      segundaImagem="assets/img/home/imagem_2.png"
+      terceiraImagem="assets/img/home/imagem_3.png"
+      textoBotao="Venha nos conhecer">
+    <h2>DONNA Salão</h2>
+    <p style="margin-bottom: 30px;">
+      Sofisticação e modernidade, com o talento dos melhores e experientes
+      profissionais do mundo da beleza.
+    </p>
+    <p style="margin-bottom: 30px;">
+      Nosso salão foi concebido para oferecer a todas as mulheres serviço de
+      qualidade e bem estar voltado a beleza e cuidados com o cabelo e imagem.
+      Possuímos ótima infraestrutura, com salas para dia das noivas, espaço de
+      esmaltação, área de maquiagem e Hair Stylists.
+    </p>
+
+    </app-background-preto>
+
+  <section class="diferenciais">
+    <h2>Nossos Diferenciais</h2>
+    <a [routerLink]="['/agendamento']" fragment="agendamentoId">
+      <div class="itens">
+        <app-forma-cartao><p><img src="assets/img/home/icone_1.png" width="60px"> Atendimento <br>  de qualidade &#10095;</p></app-forma-cartao>
+        <app-forma-cartao><p><img src="assets/img/home/icone_2.png" width="60px">Profissionais <br>  especializados &#10095;</p></app-forma-cartao>
+        <app-forma-cartao><p><img src="assets/img/home/icone_3.png" width="70px">Tratamentos <br>  completos &#10095;</p></app-forma-cartao>
+        <app-forma-cartao><p><img src="assets/img/home/icone_4.png" width="70px">Programa <br>  de fidelidade &#10095;</p></app-forma-cartao>
+        <app-forma-cartao><p><img src="assets/img/home/icone_5.png" width="75px">Ambiente <br> agradavel &#10095;</p></app-forma-cartao>
+      </div>
+    </a>
+
+  </section>
+  <section class="destaque">
+    <h2>Fomos destaques aqui</h2>
+    <div class="imagens">
+      <img src="assets/img/home/folha.png" alt="" width="18%" />
+      <img src="assets/img/home/uol.png" alt="" width="18%" />
+      <img src="assets/img/home/estadao.png" alt="" width="18%" />
+      <img src="assets/img/home/forbes.png" alt="" width="18%" />
+      <img src="assets/img/home/valor.png" alt="" width="18%" />
+    </div>
+  </section>
+</main>

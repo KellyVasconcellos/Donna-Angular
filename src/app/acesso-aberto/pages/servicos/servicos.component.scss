@@ -1,0 +1,77 @@
+@import "../../../../styles.scss";
+
+section {
+  @include padding-grid(50px, 200px, 100px, 200px);
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+  text-align: justify;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+section h2 {
+  padding: 0px 0px 15px 0px;
+}
+
+section p {
+  padding: 8px 0px 20px 0px;
+}
+
+section li::marker {
+  color: #ecc0c3;
+}
+
+img {
+  width: 350px;
+}
+
+.caixa-servicos {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+.caixa-servicos .caixa-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  max-width: 800px;
+  padding-bottom: 70px;
+}
+
+.caixa-servicos .div-imagem {
+  display: flex;
+  justify-content: flex-end;
+  align-items: first baseline;
+  padding-bottom: 50px;
+}
+
+@media (max-width: 1024px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+  }
+
+  .caixa-servicos {
+    width: 100%;
+    padding: 0;
+  }
+
+  .caixa-servicos .caixa-texto {
+    max-width: none;
+    width: 100%;
+    padding-bottom: 50px;
+  }
+  .caixa-servicos .div-imagem {
+    display: none;
+  }
+
+  .caixa-servicos .imagem {
+    display: none;
+  }
+}

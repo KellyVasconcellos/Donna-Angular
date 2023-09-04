@@ -1,0 +1,81 @@
+@import "../../../../styles.scss";
+
+section {
+  @include padding-grid(100px, 200px, 100px, 200px);
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+.caixa {
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000000;
+}
+
+h2 {
+  padding-bottom: 30px;
+}
+
+.caixa .caixa-principal {
+  width: 30%;
+  text-align: justify;
+}
+
+.caixa .caixa-principal .botao {
+  background-color: #ecc0c3;
+  border-radius: 20px;
+  height: 40px;
+  width: 250px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.caixa .caixa-principal .botao:hover {
+  background-color: #181818 ;
+  border: solid 2px #eba4a9;
+  color: #eba4a9;
+  cursor: pointer;
+}
+
+.caixa .caixa-img {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+@media (max-width: 1024px) {
+
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+  }
+}
+
+@media (max-width: 425px) {
+  section {
+    @include padding-grid(80px, 55px, 80px, 55px);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+  .caixa .caixa-principal {
+    width: 100%;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .caixa .caixa-img img {
+    padding-top: 50px;
+  }
+}

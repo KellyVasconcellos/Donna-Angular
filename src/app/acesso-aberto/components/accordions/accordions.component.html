@@ -1,0 +1,22 @@
+<div ngbAccordion #accordion="ngbAccordion" class="caixa-accordion">
+	<div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+			<button ngbAccordionButton (click)="invisivel()" class="botao">
+        <ng-content select="[header]"></ng-content>
+      </button>
+		</h2>
+		<div ngbAccordionCollapse class="corpoacc">
+			<div ngbAccordionBody>
+				<ng-template>
+          <div class="ng-template-class">
+            <ng-content select="[body]"></ng-content>
+            <div class="ng-template-botao">
+              <button class="button-collapse" (click)="accordion.collapseAll();invisivel()">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+				</ng-template>
+			</div>
+		</div>
+	</div>

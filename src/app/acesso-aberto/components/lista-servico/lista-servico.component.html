@@ -1,0 +1,16 @@
+<div class="servicos-salao">
+  <div *ngFor="let item of servicos" class="servico">
+    <h4>{{ item.titulo }}</h4>
+    <p class="descricao">{{ item.descricao }}</p>
+    <div class="preco-botao">
+      <div class="preco">
+        <p>{{ item.especifica_preco }}</p>
+        <h5>{{ item.preco | currency : "BRL" }}</h5>
+      </div>
+      <button (click)="getIdServico(item.id)" class="botao" fragment="loginId" *ngIf="showBotao">
+        Agendar
+      </button>
+    </div>
+  </div>
+</div>
+
