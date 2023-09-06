@@ -3,7 +3,7 @@ import { IHorario } from '../../interface/horario';
 import { DiaHorarioEnum } from '../../enum/diaHorario';
 import { FuncionarioService } from '../../service/funcionario.service';
 import { IFuncionario } from '../../interface/funcionario';
-import { IServico } from '../../interface/servico';
+import { IServico, IServicos } from '../../interface/servico';
 import { IListaServico } from '../../interface/lista_servico';
 import { Router } from '@angular/router';
 
@@ -19,8 +19,7 @@ export class AgendamentoComponent implements OnInit {
   numero = 1;
 
   funcionarios: Array<IFuncionario> = [];
-  servicos: Array<IServico> = [];
-  servico!: IServico;
+  servicos: Array<IServicos> = [];
   listaServico: Array<IListaServico> = [];
   ihorario!: IHorario;
 
@@ -53,9 +52,8 @@ export class AgendamentoComponent implements OnInit {
     this.idProfissional = id
     this.funcionarioService
       .getServicosPorFuncionario(id)
-      .subscribe((resposta: Array<IServico>) => {
-        this.servicos = resposta;
-        this.servico = this.servicos[0];
+      .subscribe((resposta: IServico) => {
+        this.servicos = resposta.servicos;
       });
   }
 

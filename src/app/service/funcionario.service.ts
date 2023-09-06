@@ -9,22 +9,20 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class FuncionarioService {
-  private urlFuncionario = 'http://localhost:3000/funcionario'
-  private urlServico = 'http://localhost:3001/servico'
-  private urlListaServico = 'http://localhost:3002/servicos_lista'
+  private url = '/api/v1/donna'
 
   constructor(private http: HttpClient, private router: Router) { }
 
   getFuncionarios() {
-    return this.http.get<Array<IFuncionario>>(this.urlFuncionario)
+    return this.http.get<Array<IFuncionario>>(`${this.url}/funcionario`)
   }
 
   getServicosPorFuncionario(id:number) {
-    return this.http.get<Array<IServico>>(`${this.urlServico}?id_funcionario=${id}`)
+    return this.http.get<IServico>(`${this.url}/servico/${id}`)
   }
 
   getListaServico() {
-    return this.http.get<Array<IListaServico>>(this.urlListaServico)
+    return this.http.get<Array<IListaServico>>(`${this.url}/servico`)
   }
 
 }

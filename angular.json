@@ -72,7 +72,8 @@
               "browserTarget": "donna:build:production"
             },
             "development": {
-              "browserTarget": "donna:build:development"
+              "browserTarget": "donna:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

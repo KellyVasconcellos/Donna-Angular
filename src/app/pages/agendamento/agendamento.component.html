@@ -94,8 +94,9 @@
 
     <app-lista-servico
       *ngIf="servicos.length > 0"
-      [servicos]="servico.servicos"
+      [servicos]="servicos"
       (idServico)="getIdServico($event)"
+      [showBotao]="false"
     >
     </app-lista-servico>
   </section>
