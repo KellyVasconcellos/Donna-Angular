@@ -12,7 +12,7 @@
 
 ## 🔖&nbsp; Sobre
 
-O projeto **Donna** é uma aplicação front-end para agendamento de serviços de salão de beleza, onde o cliente poderá se auto servir para consultar os serviços de cada profissional do salão, com o objetivo final de realizar um agendamento do serviço desejado. Atualmente o projeto se encontra na primeira fase: Listagem de funcionário e serviços.
+O projeto **Donna** é uma aplicação front-end para agendamento de serviços de salão de beleza, onde o cliente poderá se auto servir para consultar os serviços de cada profissional do salão, com o objetivo final de realizar um agendamento do serviço desejado. Atualmente o projeto se encontra na primeira fase: Listagem de funcionários e serviços.
 
 ---
 
