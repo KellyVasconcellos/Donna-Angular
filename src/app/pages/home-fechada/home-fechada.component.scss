@@ -1,0 +1,187 @@
+@import "../../../styles.scss";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  width: 100%;
+}
+
+.container-menu .menu {
+  width: 100%;
+  display: flex;
+  gap:15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  position: fixed;
+  background-color: #ecc0c3;
+  @include padding-grid(0, 100px, 0, 100px);
+  z-index:1;
+}
+
+.container-menu a {
+  color: #212529;
+}
+
+.container-menu .menu .botao-login {
+  border-radius: 20px;
+  height: 35px;
+  width: 120px;
+  text-align: center;
+}
+
+.container-menu .menu .botao-login:hover {
+  border: solid 2px #eba4a9;
+  color: #000000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+main {
+  color: #212529;
+  font-family: "Roboto", serif;
+  line-height: 30px;
+}
+
+main .lista-geral {
+  background-color: #f0f0f0;
+  @include padding-grid(0, 200px, 100px, 200px);
+}
+
+main .lista-geral .lista {
+  padding-top: 10px
+}
+
+.container-calendario .usuario-perfil {
+  @include padding-grid(100px, 200px, 20px, 200px);
+  width: 100%;
+  display: flex;
+  gap:10px;
+  align-items: center;
+  justify-content: space-between;
+  position:fixed;
+  background-color: #ffffff;
+}
+
+.container-calendario .usuario-perfil .chamada {
+  font-weight: bold;
+  padding-right: 40px
+}
+
+.container-calendario .usuario-perfil button{
+  background-color: #ffffff;
+}
+
+.container-calendario .usuario-perfil .botao-editar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: 20px;
+
+}
+
+.container-calendario .usuario-perfil .botao-editar a{
+  cursor: pointer;
+}
+
+
+.container-calendario .agenda-calendario {
+  @include padding-grid(260px, 200px, 100px, 200px);
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.container-calendario .agenda-calendario .alert {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  margin-top: 25px;
+}
+
+
+.container-calendario .agenda-calendario .alert_opacity {
+  opacity: 1;
+}
+
+
+.container-calendario .agenda-calendario .caixa-agendamento {
+  display: flex;
+  flex-direction: column;
+  width: 752px;
+  align-items: flex-start;
+}
+
+.container-calendario .agenda-calendario .calendario {
+  display: flex;
+  flex-direction: column;
+  width: 750px;
+  align-items: flex-start;
+}
+
+.container-calendario .agenda-calendario .calendario input{
+  margin: 5px;
+}
+
+.container-calendario .agenda-calendario .calendario .btn{
+  background-color: #ecc0c3;
+  border: #ecc0c3;
+  &:hover{
+    background-color: #e19297;
+    border: #e19297;
+  }
+}
+
+.container-calendario .agenda-calendario .calendario .rosa_escuro{
+  background-color: #e19297;
+  border: #e19297;
+}
+
+.container-calendario .agenda-calendario .caixa-agendamento .servicos-agendamento .servicos-agendamento {
+  padding: 10px;
+}
+
+@media (max-width: 1152px) {
+  .container-menu .menu {
+    justify-content: space-between;
+    @include padding-grid(0px, 50px, 0, 50px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container-menu .menu {
+    justify-content: space-between;
+    @include padding-grid(0px, 40px, 0, 40px);
+  }
+}
+
+@media (max-width: 950px) {
+  .container-menu .menu {
+    justify-content: space-around;
+  }
+
+  .container-menu .menu .botao-login {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .container-menu .menu-texto h1 {
+    padding: 50px 0 0 0;
+  }
+
+  .container-menu .menu-texto img {
+    padding-top: 50px;
+  }
+
+}
+
+

@@ -15,6 +15,8 @@ import { ListaServicoComponent } from './components/lista-servico/lista-servico.
 import { ProfissionaisComponent } from './components/profissionais/profissionais.component';
 import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
 import { TemplateHomeComponent } from './pages/template-home/template-home.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { HomeFechadaComponent } from './pages/home-fechada/home-fechada.component';
 
 registerLocaleData(localePt);
 
@@ -27,6 +29,8 @@ registerLocaleData(localePt);
         ProfissionaisComponent,
         AccordionsComponent,
         ListaServicoComponent,
+        CalendarioComponent,
+        HomeFechadaComponent
 
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt' }],

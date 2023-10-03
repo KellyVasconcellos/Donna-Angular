@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
 import { TemplateHomeComponent } from './pages/template-home/template-home.component';
+import { HomeFechadaComponent } from './pages/home-fechada/home-fechada.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'agendamento',
         component: AgendamentoComponent,
+      },
+      {
+        path: 'teste',
+        component: HomeFechadaComponent,
       },
     ],
   },

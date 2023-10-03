@@ -1,0 +1,61 @@
+<header>
+  <section class="container-menu">
+    <div class="menu">
+      <div class="nome-marca">
+        <a href="./">
+          <img
+            src="assets/img/home/marca.png"
+            width="160"
+            height="30"
+            alt="Donna"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+</header>
+
+<main>
+  <div class="container-calendario">
+
+
+    <div class="agenda-calendario">
+      <div class="caixa-agendamento">
+        <app-profissionais
+          *ngIf="funcionario.length"
+          [profissionais]="funcionario"
+          class="imagem"
+        ></app-profissionais>
+
+        <app-lista-servico
+          *ngIf="servico.length"
+          [servicos]="servico"
+          [showBotao]="false"
+          class="servicos-agendamento"
+        ></app-lista-servico>
+      </div>
+
+      <div class="calendario">
+        <app-calendario (calendario)="pegaDataSelecionada($event)"></app-calendario>
+        <div *ngIf="apareceBotoes">
+          <input
+          *ngFor="let item of horarios"
+          (click)="gethorario(item)" [ngClass]="{ rosa_escuro: pegaHorario == item}"
+          class="btn btn-primary"
+          type="button"
+          value="{{ item }}"
+        />
+        </div>
+        <button *ngIf=" pegaHorario != '' " type="button" class="btn btn-success" (click)="agendar()">Agendar</button>
+      </div>
+      <div [ngClass]="{'alert_opacity':alert}" class="alert alert-success" role="alert">
+        {{mensagem}}
+      </div>
+      <div [ngClass]="{'alert_opacity':alertDanger}" class="alert alert-danger" role="alert">
+        {{mensagemDanger}}
+      </div>
+    </div>
+  </div>
+
+  </main>
+<app-footer></app-footer>
