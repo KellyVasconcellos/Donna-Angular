@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
+import { HomeComponent } from './pages/home/home.component';
 import { TemplateHomeComponent } from './pages/template-home/template-home.component';
-import { HomeFechadaComponent } from './pages/home-fechada/home-fechada.component';
+import { AgendamentoComponent} from './pages/agendamento/agendamento.component';
 
 const routes: Routes = [
   {
@@ -11,15 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AgendamentoComponent,
+        component: HomeComponent,
       },
       {
         path: 'agendamento',
         component: AgendamentoComponent,
-      },
-      {
-        path: 'teste',
-        component: HomeFechadaComponent,
       },
     ],
   },

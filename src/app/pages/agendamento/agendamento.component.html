@@ -1,103 +1,58 @@
 <main>
-  <section id="agendamentoId">
-    <div class="sobre-salao">
-      <div class="nome-salao">
-        <img
-          class="donna"
-          src="assets/img/agendamento/marca.png"
-          width="180"
-          alt="Donna"
-        />
-        <h1>Donna Salão</h1>
+  <div class="container-calendario">
+    <div class="agenda-calendario">
+      <div class="caixa-agendamento">
+        <app-profissionais
+          *ngIf="funcionario.length"
+          [profissionais]="funcionario"
+          class="imagem"
+        ></app-profissionais>
+
+        <app-lista-servico
+          *ngIf="servico.length"
+          [servicos]="servico"
+          [showBotao]="false"
+          class="servicos-agendamento"
+        ></app-lista-servico>
       </div>
 
-      <h2>Sobre o Donna Salão</h2>
-      <p>
-        Não trabalhamos com agendamento telefônico, somente com agendamento
-        online pelo site. Dúvidas sobre serviços e atendimento, direcionar as
-        mensagens via e-mail, telefone ou formulário do site.
-      </p>
-
-      <h2>Endereço Donna Salão</h2>
-      <div class="localizacao">
-        <img src="assets/img/agendamento/localizacao.png" width="30" />
-        <p>Rua Pedroso Alvarenga, 55012, Itaim Bibi, São Paulo - SP</p>
+      <div class="calendario">
+        <app-calendario
+          (calendario)="pegaDataSelecionada($event)"
+        ></app-calendario>
+        <div *ngIf="apareceBotoes">
+          <input
+            *ngFor="let item of horarios"
+            (click)="gethorario(item)"
+            [ngClass]="{ rosa_escuro: pegaHorario == item }"
+            class="btn btn-primary"
+            type="button"
+            value="{{ item }}"
+          />
+        </div>
+        <button
+          *ngIf="pegaHorario != ''"
+          type="button"
+          class="btn btn-success"
+          (click)="agendar()"
+        >
+          Agendar
+        </button>
       </div>
-
-      <h2>Horários de funcionamento</h2>
-
-      <app-accordions (numberEvent)="enviaNumero($event)">
-        <div class="funcionamento" header>
-          <div
-            [ngClass]="{ invisivel: numero == 0 }"
-            class="func-dia func-dia-header"
-          >
-            <div class="func-hoje">
-              <img src="assets/img/agendamento/calendario.png" width="30" />
-              <p><b>Hoje</b></p>
-            </div>
-            <div class="func-dia-semana">
-              <p>
-                <b>{{ ihorario.dia }}</b>
-              </p>
-              <p>
-                <b>{{ ihorario.horario }}</b>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="funcionamento" body>
-          <div class="func-dia" *ngFor="let item of horarios">
-            <div class="func-hoje">
-              <img
-                *ngIf="diaAtual(item.dia)"
-                src="assets/img/agendamento/calendario.png"
-                width="30"
-              />
-              <p *ngIf="diaAtual(item.dia)"><b>Hoje</b></p>
-            </div>
-            <div class="func-dia-semana">
-              <p [ngClass]="{ negrito: ihorario.dia == item.dia }">
-                {{ item.dia }}
-              </p>
-              <p [ngClass]="{ negrito: ihorario.dia == item.dia }">
-                {{ item.horario }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </app-accordions>
+      <div
+        [ngClass]="{ alert_opacity: alert }"
+        class="alert alert-success"
+        role="alert"
+      >
+        {{ mensagem }}
+      </div>
+      <div
+        [ngClass]="{ alert_opacity: alertDanger }"
+        class="alert alert-danger"
+        role="alert"
+      >
+        {{ mensagemDanger }}
+      </div>
     </div>
-  </section>
-
-  <section class="equipe-foto">
-    <div class="equipe">
-      <h2>Serviços oferecidos</h2>
-      <p class="texto-equipe">
-        Confira tudo que o Donna tem para você, clique no profissional desejado:
-      </p>
-    </div>
-    <app-profissionais
-      [profissionais]="funcionarios"
-      (idFuncionario)="getIdFuncionario($event)"
-    ></app-profissionais>
-  </section>
-
-  <section>
-    <app-lista-servico
-      *ngIf="servicos.length == 0"
-      [servicos]="listaServico"
-      [showBotao]="false"
-    >
-    </app-lista-servico>
-
-    <app-lista-servico
-      *ngIf="servicos.length > 0"
-      [servicos]="servicos"
-      (idServico)="getIdServico($event)"
-      [showBotao]="false"
-    >
-    </app-lista-servico>
-  </section>
+  </div>
 </main>

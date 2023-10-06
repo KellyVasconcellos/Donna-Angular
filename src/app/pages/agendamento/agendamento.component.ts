@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { horarios } from '../../components/calendario/horarios';
+import { IAgendamento } from '../../interface/agendamento';
 import { IHorario } from '../../interface/horario';
-import { DiaHorarioEnum } from '../../enum/diaHorario';
-import { FuncionarioService } from '../../service/funcionario.service';
-import { IFuncionario } from '../../interface/funcionario';
-import { IServico, IServicos } from '../../interface/servico';
-import { IListaServico } from '../../interface/lista_servico';
-import { Router } from '@angular/router';
+import { ModalConfirmaAgendamentoComponent } from '../../components/modal-confirma-agendamento/modal-confirma-agendamento.component';
+import { IFuncionario } from 'src/app/interface/funcionario';
+import { IListaServico } from 'src/app/interface/lista_servico';
+import { DonnaService } from 'src/app/service/donna.service';
+import { SessaoEnum } from 'src/app/enum/sessao.enum';
 
 @Component({
   selector: 'app-agendamento',
@@ -13,109 +15,138 @@ import { Router } from '@angular/router';
   styleUrls: ['./agendamento.component.scss'],
 })
 export class AgendamentoComponent implements OnInit {
+  closeResult: string | undefined;
 
-  idProfissional!: number;
+  funcionario: Array<IFuncionario> = [];
 
-  numero = 1;
+  getFuncionario!: IFuncionario;
 
-  funcionarios: Array<IFuncionario> = [];
-  servicos: Array<IServicos> = [];
-  listaServico: Array<IListaServico> = [];
-  ihorario!: IHorario;
+  servico: Array<IListaServico> = [];
 
-  profissionais = [];
+  getServico!: IListaServico;
 
-  panels = ['First'];
+  horarios = horarios;
+
+  apareceBotoes = false;
+
+  pegaHorario: string = '';
+
+  agendamento!: IAgendamento;
+
+  pegaCalendario!: NgbDate;
+
+  alert = false;
+
+  alertDanger = false;
+
+  mensagem = '';
+
+  mensagemDanger = '';
+
+  listaAgendamento: Array<IAgendamento> = [];
+
+  listaTodosAgendamentos: Array<IAgendamento> = [];
+
+  idFuncionario: string = '';
+
+  idServico: string = '';
 
   constructor(
-    private funcionarioService: FuncionarioService,
-    private router: Router
+    private donnaService: DonnaService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-    this.funcionarioService
-      .getFuncionarios()
-      .subscribe((resposta: Array<IFuncionario>) => {
-        this.funcionarios = resposta;
+
+    this.idFuncionario = this.donnaService.buscaSessao(SessaoEnum.CHAVE_FUNCIONARIO)
+    this.idServico = this.donnaService.buscaSessao(SessaoEnum.CHAVE_SERVICO)
+
+    this.donnaService
+      .getFuncionario(this.idFuncionario)
+      .subscribe((response: IFuncionario) => {
+        this.getFuncionario = response;
+        this.funcionario.push(response);
+        console.log(
+          'aqui vai imprimir o funcionário escolhido',
+          this.funcionario
+        );
       });
 
-    this.funcionarioService
-      .getListaServico()
-      .subscribe((resposta: Array<IListaServico>) => {
-        this.listaServico = resposta;
-      });
-
-    this.pegaDiaAtual();
-  }
-
-  getIdFuncionario(id: number): void {
-    this.idProfissional = id
-    this.funcionarioService
-      .getServicosPorFuncionario(id)
-      .subscribe((resposta: IServico) => {
-        this.servicos = resposta.servicos;
+    this.donnaService
+      .getServico(this.idServico)
+      .subscribe((response: IListaServico) => {
+        this.getServico = response;
+        this.servico.push(response);
+        console.log('aqui vai imprimir o serviço selecionado', this.servico);
       });
   }
 
-  horarios: Array<IHorario> = [
-    {
-      dia: 'Segunda-Feira',
-      horario: '09:00 - 21:00',
-    },
-    {
-      dia: 'Terça-Feira',
-      horario: '09:00 - 21:00',
-    },
-    {
-      dia: 'Quarta-Feira',
-      horario: '09:00 - 21:00',
-    },
-    {
-      dia: 'Quinta-Feira',
-      horario: '09:00 - 21:00',
-    },
-    {
-      dia: 'Sexta-Feira',
-      horario: '09:00 - 21:00',
-    },
-    {
-      dia: 'Sábado',
-      horario: '08:00 - 19:00',
-    },
-    {
-      dia: 'Domingo',
-      horario: 'Fechado',
-    },
-  ];
-
-  diaAtual(dia: string): boolean {
-    const data = new Date();
-    const pegaDiaEnum = DiaHorarioEnum[data.getDay()];
-    if (pegaDiaEnum == dia) {
-      return true;
-    } else {
-      return false;
-    }
+  gethorario(horario: string) {
+    this.pegaHorario = horario;
   }
 
-  pegaDiaAtual() {
-    const data = new Date();
-    const pegaDiaEnum = DiaHorarioEnum[data.getDay()];
-    this.horarios.forEach((item) => {
-      if (pegaDiaEnum == item.dia) {
-        this.ihorario = item;
+  pegaDataSelecionada(calendario: NgbDate) {
+    this.pegaCalendario = calendario;
+    this.apareceBotoes = true;
+  }
+
+  agendar() {
+    const modalRef = this.modalService.open(ModalConfirmaAgendamentoComponent, {
+      centered: true,
+    });
+
+    const pegaData = `${this.pegaCalendario.day}/${this.pegaCalendario.month}/${this.pegaCalendario.year}`;
+    const horario: IHorario = {
+      dia: pegaData.trim(),
+      horario: this.pegaHorario,
+    };
+
+    const idAgendamento = Math.floor(Date.now() * Math.random());
+
+    const agendamento: IAgendamento = {
+      id: idAgendamento,
+      id_funcionario: this.getFuncionario.id,
+      nome_funcionario: this.getFuncionario.nome,
+      id_cliente:1,
+      nome_cliente: "",
+      id_servico: this.getServico.id,
+      nome_servico: this.getServico.titulo,
+      horario: horario,
+    };
+
+    this.agendamento = agendamento;
+
+    modalRef.componentInstance.agendamento = this.agendamento;
+
+    modalRef.closed.subscribe(() => {
+      console.log(this.agendamento);
+      if (
+        this.agendamento.id_funcionario != null &&
+        this.agendamento.nome_funcionario.length > 0 &&
+        this.agendamento.id_servico != null &&
+        this.agendamento.nome_servico.length > 0 &&
+        this.agendamento.horario.dia.length > 0 &&
+        this.agendamento.horario.horario.length > 0
+      ) {
+        this.donnaService
+        .salvarAgendamento(this.agendamento)
+        .subscribe(() => {
+          this.listaAgendamento.push(this.agendamento);
+          this.alert = true;
+          this.mensagem = 'Agendamento realizado com sucesso!';
+          setTimeout(() => {
+            this.alert = false;
+          }, 3000);
+        });
+
+      } else {
+        this.alertDanger = true;
+        this.mensagemDanger =
+          'Não foi possível finalizar o agendamento, favor selecionar todos os itens (dia e horário)';
+        setTimeout(() => {
+          this.alertDanger = false;
+        }, 3000);
       }
     });
-  }
-
-  enviaNumero(valor: number) {
-    this.numero = valor;
-    console.log(this.numero);
-  }
-
-  getIdServico(idServico:number){
-    // this.sessaoService.salvarSessao(SessaoEnum.CHAVE_FUNCIONARIO,this.idProfissional.toString())
-    // this.sessaoService.salvarSessao(SessaoEnum.CHAVE_SERVICO,idServico.toString())
-    // this.router.navigateByUrl("/login")
   }
 }
