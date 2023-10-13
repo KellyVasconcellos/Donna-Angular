@@ -2,6 +2,7 @@
   <div class="container-calendario">
     <div class="agenda-calendario">
       <div class="caixa-agendamento">
+
         <app-profissionais
           *ngIf="funcionario.length"
           [profissionais]="funcionario"
@@ -14,6 +15,16 @@
           [showBotao]="false"
           class="servicos-agendamento"
         ></app-lista-servico>
+      </div>
+
+      <div class="formulario-nome">
+        <div>
+          <input type="text" class="form-control" id="nomeClienteId" placeholder="Nome Completo">
+          <small class="form-text text-muted">Campo obrigatório.</small></div>
+        <div>
+          <input type="email" class="form-control" id="emailClienteId" placeholder="E-mail">
+        <small class="form-text text-muted">Campo obrigatório.</small>
+        </div>
       </div>
 
       <div class="calendario">

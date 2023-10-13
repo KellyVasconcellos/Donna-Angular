@@ -8,6 +8,7 @@ import { IFuncionario } from 'src/app/interface/funcionario';
 import { IListaServico } from 'src/app/interface/lista_servico';
 import { DonnaService } from 'src/app/service/donna.service';
 import { SessaoEnum } from 'src/app/enum/sessao.enum';
+import { ImodalConfirmacao } from 'src/app/interface/modal_confirm';
 
 @Component({
   selector: 'app-agendamento',
@@ -101,37 +102,43 @@ export class AgendamentoComponent implements OnInit {
       horario: this.pegaHorario,
     };
 
-    const idAgendamento = Math.floor(Date.now() * Math.random());
+    let nomeCliente: HTMLSelectElement = document.querySelector('#nomeClienteId')!
+
+    let emailCliente: HTMLSelectElement = document.querySelector('#emailClienteId')!
 
     const agendamento: IAgendamento = {
-      id: idAgendamento,
-      id_funcionario: this.getFuncionario.id,
-      nome_funcionario: this.getFuncionario.nome,
-      id_cliente:1,
-      nome_cliente: "",
-      id_servico: this.getServico.id,
-      nome_servico: this.getServico.titulo,
-      horario: horario,
+      nome_cliente: nomeCliente.value,
+      email_cliente: emailCliente.value,
+      data: `${horario.dia} - ${horario.horario}`,
+      id_servico: this.getServico.id.toString(),
+      id_funcionario: this.getFuncionario.id.toString(),
     };
 
     this.agendamento = agendamento;
 
-    modalRef.componentInstance.agendamento = this.agendamento;
+    const modalCofirmar: ImodalConfirmacao = {
+      nome_cliente: this.agendamento.nome_cliente,
+      email_cliente: this.agendamento.email_cliente,
+      data: this.agendamento.data,
+      nome_servico: this.getServico.titulo,
+      nome_funcionario: this.getFuncionario.nome
+
+    }
+
+    modalRef.componentInstance.agendamento = modalCofirmar;
 
     modalRef.closed.subscribe(() => {
       console.log(this.agendamento);
       if (
-        this.agendamento.id_funcionario != null &&
-        this.agendamento.nome_funcionario.length > 0 &&
-        this.agendamento.id_servico != null &&
-        this.agendamento.nome_servico.length > 0 &&
-        this.agendamento.horario.dia.length > 0 &&
-        this.agendamento.horario.horario.length > 0
+        this.agendamento.nome_cliente.length > 0 &&
+        this.agendamento.email_cliente.length > 0 &&
+        this.agendamento.data.length > 0 &&
+        this.agendamento.id_servico.length > 0 &&
+        this.agendamento.id_funcionario.length > 0
       ) {
         this.donnaService
         .salvarAgendamento(this.agendamento)
         .subscribe(() => {
-          this.listaAgendamento.push(this.agendamento);
           this.alert = true;
           this.mensagem = 'Agendamento realizado com sucesso!';
           setTimeout(() => {

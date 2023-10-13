@@ -23,6 +23,26 @@ header {
   z-index:1;
 }
 
+.servicos-salao {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-bottom: 50px !important;
+  justify-content: space-between;
+}
+
+.formulario-nome{
+  display: flex;
+  padding-bottom: 50px;
+  justify-content: space-between;
+  width: 700px;
+}
+
+.formulario-nome input{
+  width: 300px;
+}
+
 .container-menu a {
   color: #212529;
 }
@@ -91,16 +111,16 @@ main .lista-geral .lista {
 
 
 .container-calendario .agenda-calendario {
-  @include padding-grid(260px, 200px, 100px, 200px);
+  @include padding-grid(100px, 100px, 100px, 100px);
   background-color: #f0f0f0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-calendario .agenda-calendario .alert {
   width: 100%;
-  position: absolute;
   text-align: center;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -117,7 +137,7 @@ main .lista-geral .lista {
   display: flex;
   flex-direction: column;
   width: 752px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .container-calendario .agenda-calendario .calendario {
@@ -125,6 +145,12 @@ main .lista-geral .lista {
   flex-direction: column;
   width: 750px;
   align-items: flex-start;
+}
+
+.container-calendario .agenda-calendario .calendario button {
+  align-self: center;
+  width: 200px;
+  margin-top: 10px;
 }
 
 .container-calendario .agenda-calendario .calendario input{
