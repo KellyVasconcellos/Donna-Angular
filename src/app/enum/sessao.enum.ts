@@ -1,0 +1,4 @@
+export enum SessaoEnum {
+  CHAVE_FUNCIONARIO = "CHAVE_FUNCIONARIO",
+  CHAVE_SERVICO = "CHAVE_SERVICO"
+}

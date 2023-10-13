@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Agendamento de Serviço</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <p><strong>Profissional:</strong> {{agendamento.nome_funcionario}}</p>
+  <p><strong>Serviço:</strong> {{agendamento.nome_servico}}</p>
+  <p><strong>Data:</strong> {{agendamento.data}}</p>
+  <p><strong>Cliente:</strong> {{agendamento.nome_cliente}}</p>
+  <p><strong>Email:</strong> {{agendamento.email_cliente}}</p>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss()">Cancelar</button>
+	<button type="button" class="btn btn-danger" (click)="activeModal.close()">Agendar</button>
+</div>

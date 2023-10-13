@@ -13,20 +13,24 @@ import { AccordionsComponent } from './components/accordions/accordions.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { ListaServicoComponent } from './components/lista-servico/lista-servico.component';
 import { ProfissionaisComponent } from './components/profissionais/profissionais.component';
-import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
+import { HomeComponent } from './pages/home/home.component';
 import { TemplateHomeComponent } from './pages/template-home/template-home.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
 
 registerLocaleData(localePt);
 
 @NgModule({
     declarations: [
         AppComponent,
-        AgendamentoComponent,
+        HomeComponent,
         TemplateHomeComponent,
         FooterComponent,
         ProfissionaisComponent,
         AccordionsComponent,
         ListaServicoComponent,
+        CalendarioComponent,
+        AgendamentoComponent
 
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
