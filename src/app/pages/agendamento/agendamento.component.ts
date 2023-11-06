@@ -9,6 +9,11 @@ import { IListaServico } from 'src/app/interface/lista_servico';
 import { DonnaService } from 'src/app/service/donna.service';
 import { SessaoEnum } from 'src/app/enum/sessao.enum';
 import { ImodalConfirmacao } from 'src/app/interface/modal_confirm';
+import { IAgendamentoResponse } from 'src/app/interface/agendamentoResponse';
+import { IAgendamentoResposta } from 'src/app/interface/agendamentoResposta';
+import { ModalEditarComponent } from 'src/app/components/modal-editar/modal-editar.component';
+import { IEditarAgendamento } from 'src/app/interface/editarAgendamento';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-agendamento',
@@ -52,15 +57,22 @@ export class AgendamentoComponent implements OnInit {
 
   idServico: string = '';
 
+  responseAgendamento!: IAgendamentoResponse;
+
+  data_subject = new Subject<string>()
+  data_cliente = ''
+
   constructor(
     private donnaService: DonnaService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-
-    this.idFuncionario = this.donnaService.buscaSessao(SessaoEnum.CHAVE_FUNCIONARIO)
-    this.idServico = this.donnaService.buscaSessao(SessaoEnum.CHAVE_SERVICO)
+    this.idFuncionario = this.donnaService.buscaSessao(
+      SessaoEnum.CHAVE_FUNCIONARIO
+    );
+    this.idServico = this.donnaService.buscaSessao(SessaoEnum.CHAVE_SERVICO);
 
     this.donnaService
       .getFuncionario(this.idFuncionario)
@@ -80,6 +92,9 @@ export class AgendamentoComponent implements OnInit {
         this.servico.push(response);
         console.log('aqui vai imprimir o serviço selecionado', this.servico);
       });
+
+
+      this.data_subject.subscribe((res: any) => this.data_cliente = res)
   }
 
   gethorario(horario: string) {
@@ -102,9 +117,11 @@ export class AgendamentoComponent implements OnInit {
       horario: this.pegaHorario,
     };
 
-    let nomeCliente: HTMLSelectElement = document.querySelector('#nomeClienteId')!
+    let nomeCliente: HTMLSelectElement =
+      document.querySelector('#nomeClienteId')!;
 
-    let emailCliente: HTMLSelectElement = document.querySelector('#emailClienteId')!
+    let emailCliente: HTMLSelectElement =
+      document.querySelector('#emailClienteId')!;
 
     const agendamento: IAgendamento = {
       nome_cliente: nomeCliente.value,
@@ -121,9 +138,8 @@ export class AgendamentoComponent implements OnInit {
       email_cliente: this.agendamento.email_cliente,
       data: this.agendamento.data,
       nome_servico: this.getServico.titulo,
-      nome_funcionario: this.getFuncionario.nome
-
-    }
+      nome_funcionario: this.getFuncionario.nome,
+    };
 
     modalRef.componentInstance.agendamento = modalCofirmar;
 
@@ -137,15 +153,16 @@ export class AgendamentoComponent implements OnInit {
         this.agendamento.id_funcionario.length > 0
       ) {
         this.donnaService
-        .salvarAgendamento(this.agendamento)
-        .subscribe(() => {
-          this.alert = true;
-          this.mensagem = 'Agendamento realizado com sucesso!';
-          setTimeout(() => {
-            this.alert = false;
-          }, 3000);
-        });
-
+          .salvarAgendamento(this.agendamento)
+          .subscribe((response: IAgendamentoResponse) => {
+            this.alert = true;
+            this.mensagem = 'Agendamento realizado com sucesso!';
+            setTimeout(() => {
+              this.alert = false;
+            }, 3000);
+            this.responseAgendamento = response;
+            this.data_subject.next(response.agendamento.data)
+          });
       } else {
         this.alertDanger = true;
         this.mensagemDanger =
@@ -154,6 +171,32 @@ export class AgendamentoComponent implements OnInit {
           this.alertDanger = false;
         }, 3000);
       }
+    });
+  }
+
+  modalEditar(item: IAgendamentoResposta) {
+    const modal = this._modalService.open(ModalEditarComponent, {
+      centered: true,
+    });
+    modal.componentInstance.nome = item.nome_cliente;
+    modal.componentInstance.email = item.email_cliente;
+    modal.componentInstance.data = item.data;
+
+    modal.closed.subscribe((resposta) => {
+      console.log(resposta);
+      const agendamento: IEditarAgendamento = {
+        id: item.id,
+        data: resposta.data,
+      };
+
+      this.donnaService.editarAgendamento(agendamento).subscribe(() => {
+        this.data_subject.next(agendamento.data)
+        this.alert = true;
+        this.mensagem = 'Agendamento alterado com sucesso!';
+        setTimeout(() => {
+          this.alert = false;
+        }, 3000);
+      });
     });
   }
 }

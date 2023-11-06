@@ -17,6 +17,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { TemplateHomeComponent } from './pages/template-home/template-home.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
+import { ModalEditarComponent } from './components/modal-editar/modal-editar.component';
 
 registerLocaleData(localePt);
 
@@ -30,7 +31,8 @@ registerLocaleData(localePt);
         AccordionsComponent,
         ListaServicoComponent,
         CalendarioComponent,
-        AgendamentoComponent
+        AgendamentoComponent,
+        ModalEditarComponent
 
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pt' }],

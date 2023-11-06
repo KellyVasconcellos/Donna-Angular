@@ -5,6 +5,8 @@ import { IServico } from '../interface/servico';
 import { IListaServico } from '../interface/lista_servico';
 import { Router } from '@angular/router';
 import { IAgendamento } from '../interface/agendamento';
+import { IAgendamentoResponse } from '../interface/agendamentoResponse';
+import { IEditarAgendamento } from '../interface/editarAgendamento';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +37,7 @@ export class DonnaService {
   }
 
   salvarAgendamento(agendamento: IAgendamento) {
-    return this.http.post<IAgendamento>(`${this.url}/agendamento`, agendamento)
+    return this.http.post<IAgendamentoResponse>(`${this.url}/agendamento`, agendamento)
   }
 
   salvarSessao(chave: string, valor: string){
@@ -44,6 +46,10 @@ export class DonnaService {
 
   buscaSessao(chave: string): string {
     return sessionStorage.getItem(chave) || ''
+  }
+
+  editarAgendamento(agendamento: IEditarAgendamento) {
+    return this.http.put<IAgendamentoResponse>(`${this.url}/agendamento/editar`, agendamento)
   }
 
 }

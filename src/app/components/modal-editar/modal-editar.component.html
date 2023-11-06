@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Editar dados do usuário</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-describedby="modal-title"
+    (click)="modal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="formulario">
+    <form class="form" (ngSubmit)="editar()" [formGroup]="formEditar">
+
+      <label  class="form-login" for="nome">
+        <i class="far fa-user icon-modify"></i>
+        <input type="text" id="nome" placeholder="Nome" formControlName="nome">
+      </label>
+      <span *ngIf="(formEditar.get('nome')?.touched || submetido) && formEditar.get('nome')?.errors?.['required']">
+        Campo obrigatório
+      </span>
+
+      <label class="form-login" for="email">
+        <i class="far fa-envelope icon-modify"></i>
+        <input type="text" id="email" placeholder="E-mail" formControlName="email">
+      </label>
+      <span *ngIf="(formEditar.get('email')?.touched || submetido) && formEditar.get('email')?.errors?.['required']">
+        Campo obrigatório
+      </span>
+      <span *ngIf="formEditar.get('email')?.touched && formEditar.get('email')?.status === 'INVALID'">
+        Deve ser um e-mail válido
+      </span>
+
+      <label class="form-login" for="data">
+        <i class="fas fa-lock icon-modify"></i>
+        <input type="text" id="data" placeholder="data" formControlName="data">
+      </label>
+      <span *ngIf="(formEditar.get('data')?.touched || submetido) && formEditar.get('data')?.errors?.['required']">
+        Campo obrigatório
+      </span>
+      <br>
+      <button class="botao-form" type="submit">Salvar</button>
+    </form>
+  </div>
+</div>
