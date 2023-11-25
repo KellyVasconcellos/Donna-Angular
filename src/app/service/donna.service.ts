@@ -52,4 +52,8 @@ export class DonnaService {
     return this.http.put<IAgendamentoResponse>(`${this.url}/agendamento/editar`, agendamento)
   }
 
+  deletarAgendamento(id: string){
+    return this.http.delete<any>(`${this.url}/agendamento/${id}`)
+  }
+
 }

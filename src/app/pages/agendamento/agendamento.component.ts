@@ -59,6 +59,8 @@ export class AgendamentoComponent implements OnInit {
 
   responseAgendamento!: IAgendamentoResponse;
 
+  deletarTabela = true;
+
   data_subject = new Subject<string>()
   data_cliente = ''
 
@@ -197,6 +199,17 @@ export class AgendamentoComponent implements OnInit {
           this.alert = false;
         }, 3000);
       });
+    });
+  }
+
+  deletar(id: string) {
+    this.donnaService.deletarAgendamento(id).subscribe(() => {
+      this.alert = true;
+      this.mensagem = 'Agendamento deletado com sucesso!';
+      setTimeout(() => {
+        this.alert = false;
+      }, 3000);
+      this.deletarTabela = false;
     });
   }
 }
